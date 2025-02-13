@@ -1,15 +1,14 @@
 'use client'
 
-import { cn } from "@/lib/utils"
 import { Button } from "@/app/components/ui/button"
-import { Input } from "@/app/components/ui/input"
-import { Label } from "@/app/components/ui/label"
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Progress } from "@/app/components/ui/progress"
 import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card"
 import { useState, useEffect } from "react";
 import { Navbar1 } from "@/app/components/Navbar1";
+import { StreamKeys } from "@/app/components/stream-keys";
+import { Modifiers } from "@/app/components/modifiers";
 
 export function SocialButtons() {
   return (
@@ -81,17 +80,25 @@ export function LoginForm() {
   if (session) {
     return (
     <div>
-        <Navbar1 />
-        <div className="flex flex-col gap-4 items-center">
-            <Card>
-            <CardHeader>
-                <CardTitle>Connexion réussie</CardTitle>
-            </CardHeader>
-            <CardContent>
-                <p>Debug session: {JSON.stringify(session, null, 2)}</p>
-                <p>Vous êtes connecté avec {session.user?.email} {session.user?.role}</p>
-            </CardContent>
+        <div className="fixed top-5 left-0 right-0 z-50">
+            <Navbar1 />
+        </div>
+        <div className="flex min-h-[90vh] items-center justify-center p-4">
+          <div className="flex flex-row gap-4 ">
+            <Card className="w-full max-w-md shadow-lg">
+                <CardHeader className="">
+                    <CardTitle className="text-2xl font-bold text-primary">Enter your stream keys</CardTitle>
+                </CardHeader>
+                <StreamKeys />
             </Card>
+            <Card className="w-full max-w-md shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-2xl font-bold text-primary">Modifie your stream informations</CardTitle>
+              </CardHeader>
+                <Modifiers />
+            </Card>
+            <div className="flex flex-col gap-4"></div>
+          </div>
         </div>
     </div>
     );
@@ -107,7 +114,7 @@ export function LoginForm() {
       </div>
       <Button
         onClick={() => signIn('twitch', { 
-          callbackUrl: 'https://streamapp.com:3000/',
+          callbackUrl: '/',
           redirect: true
         })}
         className="flex items-center gap-2"
@@ -122,7 +129,7 @@ export function LoginForm() {
       </Button>
       <Button
         onClick={() => signIn('google', { 
-          callbackUrl: 'https://streamapp.com:3000/',
+          callbackUrl: '/',
           redirect: true
         })}
         className="flex items-center gap-2"
@@ -133,3 +140,5 @@ export function LoginForm() {
     </div>
   );
 }
+
+

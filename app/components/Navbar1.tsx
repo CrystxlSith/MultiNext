@@ -24,7 +24,7 @@ export function Navbar1() {
   const { data: session } = useSession();
 
   return (
-    <div className="border-b">
+    <div className="">
       <div className="flex h-16 items-center px-4 container mx-auto">
         <NavigationMenu>
           <NavigationMenuList>
