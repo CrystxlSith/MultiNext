@@ -10,7 +10,10 @@ function AuthStatus() {
 
 export default function SessionProviders({ children }: { children: React.ReactNode }) {
   return (
-    <NextAuthSessionProvider>
+    <NextAuthSessionProvider 
+      basePath="https://streamapp.com:3000/api/auth"
+      baseUrl="https://streamapp.com:3000"
+    >
       <AuthStatus />
       {children}
     </NextAuthSessionProvider>

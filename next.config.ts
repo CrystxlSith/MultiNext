@@ -1,4 +1,7 @@
 import type { NextConfig } from "next";
+import { readFileSync } from 'fs';
+import path from 'path';
+import https from 'https';
 
 const nextConfig: NextConfig = {
   async headers() {
@@ -13,6 +16,12 @@ const nextConfig: NextConfig = {
         ]
       }
     ];
+  },
+  webServer: {
+    https: {
+      cert: readFileSync(path.join(process.cwd(), 'certificates/mydomain.crt')),
+      key: readFileSync(path.join(process.cwd(), 'certificates/mydomain.key'))
+    }
   }
 };
 

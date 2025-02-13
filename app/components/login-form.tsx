@@ -106,7 +106,10 @@ export function LoginForm() {
         </p>
       </div>
       <Button
-        onClick={() => signIn('twitch', { callbackUrl: '/' })}
+        onClick={() => signIn('twitch', { 
+          callbackUrl: 'https://streamapp.com:3000/',
+          redirect: true
+        })}
         className="flex items-center gap-2"
       >
         <svg className="h-5 w-5" viewBox="0 0 24 24">
@@ -118,7 +121,10 @@ export function LoginForm() {
         Se connecter avec Twitch
       </Button>
       <Button
-        onClick={() => signIn('google', { callbackUrl: '/' })}
+        onClick={() => signIn('google', { 
+          callbackUrl: 'https://streamapp.com:3000/',
+          redirect: true
+        })}
         className="flex items-center gap-2"
         variant="outline"
       >
